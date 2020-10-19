@@ -14,7 +14,7 @@
 `roslaunch cartographer_ros assets_writer_backpack_3d.launch bag_filenames:=demo/b3-2016-04-05-15-51-36/b3-2016-04-05-15-51-36.bag pose_graph_filename:=demo/b3-2016-04-05-15-51-36/b3-2016-04-05-15-51-36.bag.pbstream`  
 
 ### 4. Convert .pcd to .bt (visualize_octomap part)
-source devel/setup.bash  
+`source devel/setup.bash`  
 `roslaunch visualize_octomap pcd2octree.launch`  
 
 ### 5. Publish octomap (visualize_octomap part)
