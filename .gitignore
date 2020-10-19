@@ -1,0 +1,11 @@
+# CLion
+
+/.idea
+
+# Catkin
+
+.catkin_workspace
+/build
+/devel
+/src/CMakeLists.txt
+
