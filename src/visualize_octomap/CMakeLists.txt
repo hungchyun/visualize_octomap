@@ -7,18 +7,20 @@ project(visualize_octomap)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
- find_package(catkin REQUIRED COMPONENTS
-   octomap_msgs
-   octomap_ros
-   roscpp
-   rospy
-   std_msgs
-   tf
- )
+find_package(catkin REQUIRED COMPONENTS
+        octomap_msgs
+        octomap_ros
+        pcl_conversions
+        pcl_ros
+        roscpp
+        rospy
+        std_msgs
+        tf
+)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
- find_package(octomap REQUIRED)
+find_package(octomap REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -119,10 +121,10 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
- include_directories(
+include_directories(
 # include
-   ${catkin_INCLUDE_DIRS} ${OCTOMAP_INCLUDE_DIRS}
- )
+        ${catkin_INCLUDE_DIRS} ${OCTOMAP_INCLUDE_DIRS}
+)
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -137,7 +139,8 @@ catkin_package(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
- add_executable(${PROJECT_NAME}_node src/visualize_octomap_node.cpp)
+add_executable(${PROJECT_NAME}_node src/visualize_octomap_node.cpp)
+add_executable(pcd2octree_node src/pcd2octree.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -147,12 +150,16 @@ catkin_package(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
- add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(${PROJECT_NAME}_node
-   ${catkin_LIBRARIES}
- )
+target_link_libraries(${PROJECT_NAME}_node
+        ${catkin_LIBRARIES}
+)
+
+target_link_libraries(pcd2octree_node
+        ${catkin_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -170,9 +177,9 @@ catkin_package(
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
- install(TARGETS ${PROJECT_NAME}_node
-   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- )
+install(TARGETS ${PROJECT_NAME}_node
+        RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html

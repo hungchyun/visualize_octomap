@@ -1,0 +1,8 @@
+<launch>
+  <node pkg="visualize_octomap" type="pcd2octree_node" name="pcd2octree_node" output="screen">
+    <!-- The input pcd file (.pcd). -->
+    <param name="input_pcd_file" value="$(find visualize_octomap)/../../demo/b3-2016-04-05-15-51-36/b3-2016-04-05-15-51-36.bag_points.pcd" />
+    <!-- The output octree file (.bt). -->
+    <param name="output_octree_file" value="$(find visualize_octomap)/../../demo/b3-2016-04-05-15-51-36/b3-2016-04-05-15-51-36.bt" />
+  </node>
+</launch>

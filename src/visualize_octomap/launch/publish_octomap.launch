@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="visualize_octomap" type="visualize_octomap_node" name="visualize_octomap_node" output="screen">
+    <!-- The octree file for publishing. -->
+    <param name="input_octree" value="$(find visualize_octomap)/../../demo/b3-2016-04-05-15-51-36/b3-2016-04-05-15-51-36.bt" />
+  </node>
+</launch>
